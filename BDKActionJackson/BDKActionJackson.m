@@ -63,7 +63,7 @@
         [self.overlay addSubview:self.label];
         
         self.buttons = [NSMutableArray arrayWithArray:@[self.cancelButton]];
-        
+         
         // Set some defaults
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
         [self addGestureRecognizer:self.tapRecognizer];
@@ -172,11 +172,12 @@
 - (void)addButton:(UIButton *)button {
     NSInteger index = [self.buttons indexOfObject:self.cancelButton];
     [self.buttons insertObject:button atIndex:index];
-    [self updateHeightForButtons];
 }
 
 - (void)presentView:(void (^)(void))completion {
     if (!self.superview) NSLog(@"BDKActionSheet was presented without being in the view hierachy.");
+    [self layoutIfNeeded];
+    
     [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
                         options:UIViewAnimationCurveEaseOut animations:^{
                             CGRect frame = self.overlay.frame;
@@ -215,9 +216,6 @@
 #pragma mark - Private methods
 
 - (void)updateHeightForButtons {
-    // Process button layouts.
-    [self layoutIfNeeded];
-    
     __block CGFloat minY = CGRectGetMaxY(self.label.frame) + 20;
     [self.buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
         if (!button.superview) [self.overlay addSubview:button];
@@ -228,6 +226,7 @@
     CGRect frame = self.overlay.frame;
     frame.size.height = minY + 20;
     self.overlay.frame = frame;
+    NSLog(@"Overlay frame height is now %.0f.", frame.size.height);
 }
 
 #pragma mark - Events

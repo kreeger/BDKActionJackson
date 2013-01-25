@@ -56,7 +56,8 @@
     if (_sheet) return _sheet;
     _sheet = [BDKActionJackson actionSheetInMasterFrame:self.view.window.frame];
     _sheet.title = @"How do you like your ribs?";
-    _sheet.titleFont = [UIFont boldSystemFontOfSize:14];
+    
+    //_sheet.titleFont = [UIFont boldSystemFontOfSize:14];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"Something" forState:UIControlStateNormal];
