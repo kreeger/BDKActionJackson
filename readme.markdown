@@ -50,3 +50,7 @@ button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 ## Contributing
 
 You want to contribute to this project? Thanks! Send me your fixes in pull requests, and if they check out okay, I'll merge them.
+
+## License
+
+`BDKActionJackson` is released under the [MIT license](https://github.com/kreeger/BDKActionJackson/blob/master/license.markdown).
