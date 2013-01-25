@@ -72,7 +72,6 @@
 }
 
 - (void)layoutSubviews {
-    NSLog(@"-layoutSubviews with %i buttons.", self.buttons.count);
     CGRect shineFrame = self.frame;
     shineFrame.size.height = floorf(CGRectGetHeight(self.overlay.frame) / 2);
     self.shine.frame = shineFrame;
@@ -226,7 +225,6 @@
     CGRect frame = self.overlay.frame;
     frame.size.height = minY + 20;
     self.overlay.frame = frame;
-    NSLog(@"Overlay frame height is now %.0f.", frame.size.height);
 }
 
 #pragma mark - Events
