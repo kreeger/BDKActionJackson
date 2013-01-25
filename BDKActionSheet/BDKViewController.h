@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+/** Simple view controller.
+ */
 @interface BDKViewController : UIViewController
 
 @end

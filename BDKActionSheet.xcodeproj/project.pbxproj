@@ -10,15 +10,17 @@
 		C3328F3216B2DAFF00451DAA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3328F3116B2DAFF00451DAA /* UIKit.framework */; };
 		C3328F3416B2DAFF00451DAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3328F3316B2DAFF00451DAA /* Foundation.framework */; };
 		C3328F3616B2DAFF00451DAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3328F3516B2DAFF00451DAA /* CoreGraphics.framework */; };
-		C3328F3C16B2DAFF00451DAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3328F3A16B2DAFF00451DAA /* InfoPlist.strings */; };
-		C3328F3E16B2DAFF00451DAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3328F3D16B2DAFF00451DAA /* main.m */; };
-		C3328F4216B2DAFF00451DAA /* BDKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3328F4116B2DAFF00451DAA /* BDKAppDelegate.m */; };
-		C3328F4416B2DAFF00451DAA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C3328F4316B2DAFF00451DAA /* Default.png */; };
-		C3328F4616B2DAFF00451DAA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3328F4516B2DAFF00451DAA /* Default@2x.png */; };
-		C3328F4816B2DAFF00451DAA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3328F4716B2DAFF00451DAA /* Default-568h@2x.png */; };
-		C3328F4B16B2DAFF00451DAA /* BDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3328F4A16B2DAFF00451DAA /* BDKViewController.m */; };
-		C3328F4E16B2DAFF00451DAA /* BDKViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3328F4C16B2DAFF00451DAA /* BDKViewController_iPhone.xib */; };
-		C3328F5116B2DAFF00451DAA /* BDKViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3328F4F16B2DAFF00451DAA /* BDKViewController_iPad.xib */; };
+		C36318DE16B2E1CB006BC6F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C36318D916B2E1CB006BC6F1 /* AppDelegate.m */; };
+		C36318DF16B2E1CB006BC6F1 /* BDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36318DB16B2E1CB006BC6F1 /* BDKViewController.m */; };
+		C36318E016B2E1CB006BC6F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C36318DC16B2E1CB006BC6F1 /* main.m */; };
+		C36318EC16B2E1D2006BC6F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318E216B2E1D2006BC6F1 /* Default-568h@2x.png */; };
+		C36318ED16B2E1D2006BC6F1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318E316B2E1D2006BC6F1 /* Default.png */; };
+		C36318EE16B2E1D2006BC6F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318E416B2E1D2006BC6F1 /* Default@2x.png */; };
+		C36318EF16B2E1D2006BC6F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C36318E516B2E1D2006BC6F1 /* InfoPlist.strings */; };
+		C363190116B2E22A006BC6F1 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318FD16B2E22A006BC6F1 /* Icon-72.png */; };
+		C363190216B2E22A006BC6F1 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318FE16B2E22A006BC6F1 /* Icon-72@2x.png */; };
+		C363190316B2E22A006BC6F1 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318FF16B2E22A006BC6F1 /* Icon.png */; };
+		C363190416B2E22A006BC6F1 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C363190016B2E22A006BC6F1 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,19 +28,21 @@
 		C3328F3116B2DAFF00451DAA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C3328F3316B2DAFF00451DAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3328F3516B2DAFF00451DAA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C3328F3916B2DAFF00451DAA /* BDKActionSheet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BDKActionSheet-Info.plist"; sourceTree = "<group>"; };
-		C3328F3B16B2DAFF00451DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C3328F3D16B2DAFF00451DAA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C3328F3F16B2DAFF00451DAA /* BDKActionSheet-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDKActionSheet-Prefix.pch"; sourceTree = "<group>"; };
-		C3328F4016B2DAFF00451DAA /* BDKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDKAppDelegate.h; sourceTree = "<group>"; };
-		C3328F4116B2DAFF00451DAA /* BDKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDKAppDelegate.m; sourceTree = "<group>"; };
-		C3328F4316B2DAFF00451DAA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		C3328F4516B2DAFF00451DAA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		C3328F4716B2DAFF00451DAA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C3328F4916B2DAFF00451DAA /* BDKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDKViewController.h; sourceTree = "<group>"; };
-		C3328F4A16B2DAFF00451DAA /* BDKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDKViewController.m; sourceTree = "<group>"; };
-		C3328F4D16B2DAFF00451DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BDKViewController_iPhone.xib; sourceTree = "<group>"; };
-		C3328F5016B2DAFF00451DAA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BDKViewController_iPad.xib; sourceTree = "<group>"; };
+		C36318D816B2E1CB006BC6F1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BDKActionSheet/AppDelegate.h; sourceTree = "<group>"; };
+		C36318D916B2E1CB006BC6F1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BDKActionSheet/AppDelegate.m; sourceTree = "<group>"; };
+		C36318DA16B2E1CB006BC6F1 /* BDKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDKViewController.h; path = BDKActionSheet/BDKViewController.h; sourceTree = "<group>"; };
+		C36318DB16B2E1CB006BC6F1 /* BDKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDKViewController.m; path = BDKActionSheet/BDKViewController.m; sourceTree = "<group>"; };
+		C36318DC16B2E1CB006BC6F1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BDKActionSheet/main.m; sourceTree = "<group>"; };
+		C36318DD16B2E1CB006BC6F1 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = BDKActionSheet/Prefix.pch; sourceTree = "<group>"; };
+		C36318E216B2E1D2006BC6F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C36318E316B2E1D2006BC6F1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C36318E416B2E1D2006BC6F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C36318E616B2E1D2006BC6F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C36318EB16B2E1D2006BC6F1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C36318FD16B2E22A006BC6F1 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		C36318FE16B2E22A006BC6F1 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		C36318FF16B2E22A006BC6F1 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		C363190016B2E22A006BC6F1 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,8 @@
 		C3328F2216B2DAFF00451DAA = {
 			isa = PBXGroup;
 			children = (
-				C3328F3716B2DAFF00451DAA /* BDKActionSheet */,
+				C36318E116B2E1D2006BC6F1 /* Resources */,
+				C36318D716B2E1BE006BC6F1 /* Classes */,
 				C3328F3016B2DAFF00451DAA /* Frameworks */,
 				C3328F2E16B2DAFF00451DAA /* Products */,
 			);
@@ -82,32 +87,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C3328F3716B2DAFF00451DAA /* BDKActionSheet */ = {
+		C36318D716B2E1BE006BC6F1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C3328F4016B2DAFF00451DAA /* BDKAppDelegate.h */,
-				C3328F4116B2DAFF00451DAA /* BDKAppDelegate.m */,
-				C3328F4916B2DAFF00451DAA /* BDKViewController.h */,
-				C3328F4A16B2DAFF00451DAA /* BDKViewController.m */,
-				C3328F4C16B2DAFF00451DAA /* BDKViewController_iPhone.xib */,
-				C3328F4F16B2DAFF00451DAA /* BDKViewController_iPad.xib */,
-				C3328F3816B2DAFF00451DAA /* Supporting Files */,
+				C36318D816B2E1CB006BC6F1 /* AppDelegate.h */,
+				C36318D916B2E1CB006BC6F1 /* AppDelegate.m */,
+				C36318DA16B2E1CB006BC6F1 /* BDKViewController.h */,
+				C36318DB16B2E1CB006BC6F1 /* BDKViewController.m */,
+				C36318DC16B2E1CB006BC6F1 /* main.m */,
+				C36318DD16B2E1CB006BC6F1 /* Prefix.pch */,
 			);
-			path = BDKActionSheet;
+			name = Classes;
 			sourceTree = "<group>";
 		};
-		C3328F3816B2DAFF00451DAA /* Supporting Files */ = {
+		C36318E116B2E1D2006BC6F1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C3328F3916B2DAFF00451DAA /* BDKActionSheet-Info.plist */,
-				C3328F3A16B2DAFF00451DAA /* InfoPlist.strings */,
-				C3328F3D16B2DAFF00451DAA /* main.m */,
-				C3328F3F16B2DAFF00451DAA /* BDKActionSheet-Prefix.pch */,
-				C3328F4316B2DAFF00451DAA /* Default.png */,
-				C3328F4516B2DAFF00451DAA /* Default@2x.png */,
-				C3328F4716B2DAFF00451DAA /* Default-568h@2x.png */,
+				C36318FD16B2E22A006BC6F1 /* Icon-72.png */,
+				C36318FE16B2E22A006BC6F1 /* Icon-72@2x.png */,
+				C36318FF16B2E22A006BC6F1 /* Icon.png */,
+				C363190016B2E22A006BC6F1 /* Icon@2x.png */,
+				C36318E216B2E1D2006BC6F1 /* Default-568h@2x.png */,
+				C36318E316B2E1D2006BC6F1 /* Default.png */,
+				C36318E416B2E1D2006BC6F1 /* Default@2x.png */,
+				C36318E516B2E1D2006BC6F1 /* InfoPlist.strings */,
+				C36318EB16B2E1D2006BC6F1 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = Resources;
+			path = BDKActionSheet/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,12 +169,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3328F3C16B2DAFF00451DAA /* InfoPlist.strings in Resources */,
-				C3328F4416B2DAFF00451DAA /* Default.png in Resources */,
-				C3328F4616B2DAFF00451DAA /* Default@2x.png in Resources */,
-				C3328F4816B2DAFF00451DAA /* Default-568h@2x.png in Resources */,
-				C3328F4E16B2DAFF00451DAA /* BDKViewController_iPhone.xib in Resources */,
-				C3328F5116B2DAFF00451DAA /* BDKViewController_iPad.xib in Resources */,
+				C36318EC16B2E1D2006BC6F1 /* Default-568h@2x.png in Resources */,
+				C36318ED16B2E1D2006BC6F1 /* Default.png in Resources */,
+				C36318EE16B2E1D2006BC6F1 /* Default@2x.png in Resources */,
+				C36318EF16B2E1D2006BC6F1 /* InfoPlist.strings in Resources */,
+				C363190116B2E22A006BC6F1 /* Icon-72.png in Resources */,
+				C363190216B2E22A006BC6F1 /* Icon-72@2x.png in Resources */,
+				C363190316B2E22A006BC6F1 /* Icon.png in Resources */,
+				C363190416B2E22A006BC6F1 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,37 +187,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3328F3E16B2DAFF00451DAA /* main.m in Sources */,
-				C3328F4216B2DAFF00451DAA /* BDKAppDelegate.m in Sources */,
-				C3328F4B16B2DAFF00451DAA /* BDKViewController.m in Sources */,
+				C36318DE16B2E1CB006BC6F1 /* AppDelegate.m in Sources */,
+				C36318DF16B2E1CB006BC6F1 /* BDKViewController.m in Sources */,
+				C36318E016B2E1CB006BC6F1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C3328F3A16B2DAFF00451DAA /* InfoPlist.strings */ = {
+		C36318E516B2E1D2006BC6F1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C3328F3B16B2DAFF00451DAA /* en */,
+				C36318E616B2E1D2006BC6F1 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C3328F4C16B2DAFF00451DAA /* BDKViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3328F4D16B2DAFF00451DAA /* en */,
-			);
-			name = BDKViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		C3328F4F16B2DAFF00451DAA /* BDKViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3328F5016B2DAFF00451DAA /* en */,
-			);
-			name = BDKViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -270,8 +263,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BDKActionSheet/BDKActionSheet-Prefix.pch";
-				INFOPLIST_FILE = "BDKActionSheet/BDKActionSheet-Info.plist";
+				GCC_PREFIX_HEADER = BDKActionSheet/Prefix.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/BDKActionSheet/Resources/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -281,8 +274,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BDKActionSheet/BDKActionSheet-Prefix.pch";
-				INFOPLIST_FILE = "BDKActionSheet/BDKActionSheet-Info.plist";
+				GCC_PREFIX_HEADER = BDKActionSheet/Prefix.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/BDKActionSheet/Resources/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -307,6 +300,7 @@
 				C3328F5616B2DAFF00451DAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
