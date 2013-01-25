@@ -54,6 +54,10 @@ button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
 You can even override the cancel button with whatever you want! Note that the cancel button (like all the buttons you feed to `BDKActionJackson`) is strongly-referenced inside of an array, so if you are creating the cancel button, create it as a separate object instance *first*, and then assigned your finished goods to the `cancelButton` property. That way you'll avoid any potential nasties. *Note that this may change in the future if I get around to writing an array with weak references instead.*
 
+## To-do
+
+I still need to work on proper auto-rotation methods. I need to set up a rotation listener for this, likely, which should help solve the issue.
+
 ## Contributing
 
 You want to contribute to this project? Thanks! Send me your fixes in pull requests, and if they check out okay, I'll merge them.
