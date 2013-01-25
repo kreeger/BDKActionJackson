@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface BDKActionJackson ()
+@interface BDKActionJackson () <UIGestureRecognizerDelegate>
 
 @property (nonatomic) UIView *overlay;
 @property (strong, nonatomic) UILabel *label;
@@ -17,6 +17,10 @@
 @property (nonatomic) CGFloat height;
 @property (strong, nonatomic) UIView *shine;
 @property (nonatomic) BOOL visible;
+
+/** Handles resizing the overlay view for the number of allocated buttons.
+ */
+- (void)updateHeightForButtons;
 
 /** The internal dismissal method that gets called, with a BOOL regarding what was tapped.
  *  @param wasCanceled if YES, the cancel button or background tap triggered the method.
@@ -68,10 +72,16 @@
 }
 
 - (void)layoutSubviews {
+    NSLog(@"-layoutSubviews with %i buttons.", self.buttons.count);
     CGRect shineFrame = self.frame;
     shineFrame.size.height = floorf(CGRectGetHeight(self.overlay.frame) / 2);
     self.shine.frame = shineFrame;
-    self.label.frame = CGRectMake(0, 10, CGRectGetWidth(self.overlay.frame), 16);
+    CGFloat height = [self.label.text sizeWithFont:self.label.font
+                                          forWidth:CGRectGetWidth(self.overlay.frame)
+                                     lineBreakMode:self.label.lineBreakMode].height;
+    self.label.frame = CGRectMake(0, 10, CGRectGetWidth(self.overlay.frame), height);
+    
+    [self updateHeightForButtons];
 }
 
 #pragma mark - Properties
@@ -80,7 +90,7 @@
     if (_cancelButton) return _cancelButton;
     _cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-    [_cancelButton setTintColor:[UIColor redColor]];
+    [_cancelButton addTarget:self action:@selector(cancelButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     return _cancelButton;
 }
 
@@ -136,6 +146,7 @@
     if (_tapRecognizer) return _tapRecognizer;
     // Default is one tap, one touch.
     _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)];
+    _tapRecognizer.delegate = self;
     return _tapRecognizer;
 }
 
@@ -161,6 +172,7 @@
 - (void)addButton:(UIButton *)button {
     NSInteger index = [self.buttons indexOfObject:self.cancelButton];
     [self.buttons insertObject:button atIndex:index];
+    [self updateHeightForButtons];
 }
 
 - (void)presentView:(void (^)(void))completion {
@@ -169,6 +181,7 @@
                         options:UIViewAnimationCurveEaseOut animations:^{
                             CGRect frame = self.overlay.frame;
                             frame.origin.y = CGRectGetHeight(self.frame) - CGRectGetHeight(frame);
+                            NSLog(@"Bumping to new Y origin %.0f.", frame.origin.y);
                             self.overlay.frame = frame;
                             self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.dimmingOpacity];
                         } completion:^(BOOL finished) {
@@ -199,6 +212,24 @@
                         }];
 }
 
+#pragma mark - Private methods
+
+- (void)updateHeightForButtons {
+    // Process button layouts.
+    [self layoutIfNeeded];
+    
+    __block CGFloat minY = CGRectGetMaxY(self.label.frame) + 20;
+    [self.buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
+        if (!button.superview) [self.overlay addSubview:button];
+        button.frame = CGRectMake(10, minY, CGRectGetWidth(self.overlay.frame) - 20, 48);
+        minY = CGRectGetMaxY(button.frame) + 10;
+    }];
+    
+    CGRect frame = self.overlay.frame;
+    frame.size.height = minY + 20;
+    self.overlay.frame = frame;
+}
+
 #pragma mark - Events
 
 - (void)cancelButtonTapped:(UIButton *)sender {
@@ -207,6 +238,12 @@
 
 - (void)backgroundTapped:(UIGestureRecognizer *)sender {
     [self dismissView:YES];
+}
+
+#pragma mark - UITapGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return !([touch.view isDescendantOfView:self.overlay]);
 }
 
 @end

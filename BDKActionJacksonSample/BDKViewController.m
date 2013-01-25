@@ -52,14 +52,26 @@
     return _imageView;
 }
 
+- (BDKActionJackson *)sheet {
+    if (_sheet) return _sheet;
+    _sheet = [BDKActionJackson actionSheetInMasterFrame:self.view.window.frame];
+    _sheet.title = @"How do you like your ribs?";
+    _sheet.titleFont = [UIFont boldSystemFontOfSize:14];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"Something" forState:UIControlStateNormal];
+    [_sheet addButton:button];
+    
+    button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"Something Else" forState:UIControlStateNormal];
+    [_sheet addButton:button];
+    return _sheet;
+}
+
 #pragma mark - Actions
 
 - (void)shareButtonTapped:(UIBarButtonItem *)sender {
-    if (!_sheet) {
-        self.sheet = [BDKActionJackson actionSheetInMasterFrame:self.view.window.frame];
-        self.sheet.title = @"How do you like your ribs?";
-        self.sheet.titleFont = [UIFont boldSystemFontOfSize:16];
-    }
+    (void)self.sheet;
     
     if (self.sheet.isVisible) {
         [self.sheet dismissView];
