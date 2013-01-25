@@ -27,17 +27,22 @@ sheet.dimmingOpacity = 0.8;
 sheet.actionPaneOpacity = 0.9;
 
 // Make it do something afterwards
-button.dismissalBlock = ^(BOOL cancelTapped) {
+sheet.dismissalBlock = ^(BOOL cancelTapped) {
     // Do what you like here; the view will remove itself from superview when it's done
     // (and before it calls this block)  
 };
 
+// Make it stay up after a button is hit
+sheet.dismissesOnButtonTap = NO;
+
 UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 [button setTitle:@"Something" forState:UIControlStateNormal];
+[button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
 [sheet addButton:button];
 
 button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 [button setTitle:@"Something Else" forState:UIControlStateNormal];
+[button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
 [sheet addButton:button];
 
 // Add it to the subview and present it; you'll want to do both at the same time
@@ -46,6 +51,8 @@ button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     // Something upon completion
 }]
 ```
+
+You can even override the cancel button with whatever you want! Note that the cancel button (like all the buttons you feed to `BDKActionJackson`) is strongly-referenced inside of an array, so if you are creating the cancel button, create it as a separate object instance *first*, and then assigned your finished goods to the `cancelButton` property. That way you'll avoid any potential nasties. *Note that this may change in the future if I get around to writing an array with weak references instead.*
 
 ## Contributing
 
