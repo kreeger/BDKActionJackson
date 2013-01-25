@@ -16,6 +16,11 @@ typedef enum {
 @property (strong, nonatomic) UIColor *endColor;
 @property (nonatomic) BDKGradientViewDirection direction;
 
++ (id)gradientWithFrame:(CGRect)frame
+             startColor:(UIColor *)startColor
+               endColor:(UIColor *)endColor
+              direction:(BDKGradientViewDirection)direction;
+
 - (id)initWithFrame:(CGRect)frame
          startColor:(UIColor *)startColor
            endColor:(UIColor *)endColor

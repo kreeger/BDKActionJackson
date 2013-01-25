@@ -27,10 +27,10 @@
  */
 - (void)dismissView:(BOOL)wasCanceled;
 
-/** Fired when cancel button is tapped.
+/** Fired when any button is tapped.
  *  @param sender the sender of the event.
  */
-- (void)cancelButtonTapped:(UIButton *)sender;
+- (void)buttonTapped:(UIButton *)sender;
 
 /** Fired when the background of the view is tapped.
  *  @param sender the sender of the event.
@@ -41,7 +41,7 @@
 
 @implementation BDKActionJackson
 
-@synthesize title = _title, titleFont = _titleFont;
+@synthesize title = _title, titleFont = _titleFont, cancelButton = _cancelButton;
 
 #pragma mark - Lifecycle
 
@@ -57,13 +57,16 @@
         _dimmingOpacity = 0.45;
         _actionPaneOpacity = 0.85;
         _visible = NO;
+        _dismissesOnButtonTap = YES;
 
         [self addSubview:self.overlay];
         [self.overlay addSubview:self.shine];
         [self.overlay addSubview:self.label];
         
-        self.buttons = [NSMutableArray arrayWithArray:@[self.cancelButton]];
-         
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        self.cancelButton = cancelButton;
+        
         // Set some defaults
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
         [self addGestureRecognizer:self.tapRecognizer];
@@ -85,12 +88,24 @@
 
 #pragma mark - Properties
 
-- (UIButton *)cancelButton {
-    if (_cancelButton) return _cancelButton;
-    _cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-    [_cancelButton addTarget:self action:@selector(cancelButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    return _cancelButton;
+- (NSMutableArray *)buttons {
+    if (_buttons) return _buttons;
+    _buttons = [NSMutableArray array];
+    return _buttons;
+}
+
+- (void)setCancelButton:(UIButton *)cancelButton {
+    [cancelButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    NSInteger index = [self.buttons indexOfObject:_cancelButton];
+    
+    if (index == NSNotFound) {
+        _cancelButton = cancelButton;
+        [self.buttons addObject:_cancelButton];
+    } else { 
+        [_cancelButton removeFromSuperview];
+        _cancelButton = cancelButton;
+        [self.buttons replaceObjectAtIndex:index withObject:_cancelButton];
+    }
 }
 
 - (NSString *)title {
@@ -153,10 +168,10 @@
     if (_shine) return _shine;
     CGRect frame = self.overlay.frame;
     frame.size.height = floorf(CGRectGetHeight(frame) / 3);
-    _shine = [[BDKGradientView alloc] initWithFrame:frame
-                                         startColor:[[UIColor whiteColor] colorWithAlphaComponent:0.2]
-                                           endColor:[[UIColor whiteColor] colorWithAlphaComponent:0]
-                                          direction:BDKGradientViewDirectionTopToBottom];
+    _shine = [BDKGradientView gradientWithFrame:frame
+                                     startColor:[[UIColor whiteColor] colorWithAlphaComponent:0.2]
+                                       endColor:[[UIColor whiteColor] colorWithAlphaComponent:0]
+                                      direction:BDKGradientViewDirectionTopToBottom];
     _shine.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
     _shine.opaque = NO;
     return _shine;
@@ -170,7 +185,13 @@
 
 - (void)addButton:(UIButton *)button {
     NSInteger index = [self.buttons indexOfObject:self.cancelButton];
-    [self.buttons insertObject:button atIndex:index];
+    
+    [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    if (index == NSNotFound) {
+        [self.buttons addObject:button];
+    } else {
+        [self.buttons insertObject:button atIndex:index];
+    }
 }
 
 - (void)presentView:(void (^)(void))completion {
@@ -229,8 +250,12 @@
 
 #pragma mark - Events
 
-- (void)cancelButtonTapped:(UIButton *)sender {
-    [self dismissView:YES];
+- (void)buttonTapped:(UIButton *)sender {
+    if ([sender isEqual:self.cancelButton]) {
+        [self dismissView:YES];
+    } else if (self.dismissesOnButtonTap) {
+        [self dismissView:NO];
+    }
 }
 
 - (void)backgroundTapped:(UIGestureRecognizer *)sender {
@@ -240,7 +265,15 @@
 #pragma mark - UITapGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    return !([touch.view isDescendantOfView:self.overlay]);
+    if ([touch.view isDescendantOfView:self.overlay]) {
+        if ([touch.view isKindOfClass:[UIButton class]]) {
+            return self.dismissesOnButtonTap;
+        } else {
+            return NO;
+        }
+    } else {
+        return YES;
+    }
 }
 
 @end

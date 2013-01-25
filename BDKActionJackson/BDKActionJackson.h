@@ -26,6 +26,7 @@
 @property (nonatomic) CGFloat animationDelay;
 @property (nonatomic) CGFloat dimmingOpacity;
 @property (nonatomic) CGFloat actionPaneOpacity;
+@property (nonatomic) BOOL dismissesOnButtonTap;
 
 #pragma mark - Lifecycle
 

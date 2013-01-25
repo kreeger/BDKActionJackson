@@ -7,6 +7,13 @@
 
 @implementation BDKGradientView
 
++ (id)gradientWithFrame:(CGRect)frame
+             startColor:(UIColor *)startColor
+               endColor:(UIColor *)endColor
+              direction:(BDKGradientViewDirection)direction {
+    return [[self alloc] initWithFrame:frame startColor:startColor endColor:endColor direction:direction];
+}
+
 - (id)initWithFrame:(CGRect)frame
          startColor:(UIColor *)startColor
            endColor:(UIColor *)endColor

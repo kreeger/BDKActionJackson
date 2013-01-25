@@ -6,6 +6,9 @@
 #import "BDKViewController.h"
 
 #import "BDKActionJackson.h"
+#import "BDKGradientView.h"
+
+#import <QuartzCore/QuartzCore.h>
 
 @interface BDKViewController ()
 
@@ -17,6 +20,8 @@
  *  @param sender the sender of the event.
  */
 - (void)shareButtonTapped:(UIBarButtonItem *)sender;
+
+- (void)buttonTapped:(UIButton *)sender;
 
 @end
 
@@ -58,11 +63,39 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"Something" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_sheet addButton:button];
     
     button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"Something Else" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_sheet addButton:button];
+    
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    BDKGradientView *back = [BDKGradientView gradientWithFrame:cancelButton.frame
+                                                    startColor:[UIColor colorWithRed:1.0 green:0 blue:0 alpha:1.0]
+                                                      endColor:[UIColor colorWithRed:0.7 green:0 blue:0 alpha:1.0]
+                                                     direction:BDKGradientViewDirectionTopToBottom];
+    back.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    back.layer.cornerRadius = 5.0f;
+    back.clipsToBounds = YES;
+    back.userInteractionEnabled = NO;
+    [cancelButton addSubview:back];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:back.frame];
+    label.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.shadowColor = [UIColor blackColor];
+    label.shadowOffset = CGSizeMake(0, -1);
+    label.text = @"CANCEL!!";
+    label.userInteractionEnabled = NO;
+    [cancelButton addSubview:label];
+    
+    _sheet.cancelButton = cancelButton;
+    
     return _sheet;
 }
 
@@ -77,6 +110,11 @@
         [self.view.window addSubview:self.sheet];
         [self.sheet presentView:nil];
     }
+}
+
+- (void)buttonTapped:(UIButton *)sender {
+    NSString *message = [NSString stringWithFormat:@"Sender: %@", sender];
+    [[[UIAlertView alloc] initWithTitle:@"Tap!" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
 }
 
 @end
