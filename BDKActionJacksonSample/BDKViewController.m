@@ -5,13 +5,13 @@
 
 #import "BDKViewController.h"
 
-#import "BDKActionSheet.h"
+#import "BDKActionJackson.h"
 
 @interface BDKViewController ()
 
 @property (strong, nonatomic) UIBarButtonItem *shareButton;
-@property (strong, nonatomic) UILabel *label;
-@property (strong, nonatomic) BDKActionSheet *sheet;
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) BDKActionJackson *sheet;
 
 /** Fired when the share button gets tapped.
  *  @param sender the sender of the event.
@@ -31,7 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.label];
+    self.title = @"BDKActionJackson";
+    [self.view addSubview:self.imageView];
 }
 
 #pragma mark - Properties
@@ -44,27 +45,20 @@
     return _shareButton;
 }
 
-- (UILabel *)label {
-    if (_label) return _label;
-    _label = [[UILabel alloc] initWithFrame:CGRectZero];
-    _label.text = @"See that action button down there?\nTap it.";
-    _label.backgroundColor = [UIColor clearColor];
-    _label.textAlignment = NSTextAlignmentCenter;
-    _label.font = [UIFont boldSystemFontOfSize:36];
-    _label.numberOfLines = 0;
-    _label.lineBreakMode = NSLineBreakByWordWrapping;
-    _label.frame = self.view.frame;
-    return _label;
+- (UIImageView *)imageView {
+    if (_imageView) return _imageView;
+    _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default.png"]];
+    _imageView.center = self.view.center;
+    return _imageView;
 }
 
 #pragma mark - Actions
 
 - (void)shareButtonTapped:(UIBarButtonItem *)sender {
     if (!_sheet) {
-        CGRect frame = self.view.window.frame;
-        self.sheet = [BDKActionSheet actionSheetInMasterFrame:frame];
-//        self.sheet.dismissalBlock = ^(BOOL wasCanceled) {
-//        };
+        self.sheet = [BDKActionJackson actionSheetInMasterFrame:self.view.window.frame];
+        self.sheet.title = @"How do you like your ribs?";
+        self.sheet.titleFont = [UIFont boldSystemFontOfSize:16];
     }
     
     if (self.sheet.isVisible) {

@@ -7,17 +7,25 @@
 
 /** A custom implementation of a UIActionSheet.
  */
-@interface BDKActionSheet : UIView
+@interface BDKActionJackson : UIView
 
 @property (strong, nonatomic) NSMutableArray *buttons;
 @property (strong, nonatomic) UIButton *cancelButton;
-@property (strong, nonatomic) UILabel *label;
+
 @property (copy, nonatomic) void (^dismissalBlock)(BOOL cancelTapped);
 
 @property (readonly) BOOL isVisible;
 
+//
+// UI / animation customization properties.
+//
+
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) UIFont *titleFont;
 @property (nonatomic) CGFloat animationDuration;
 @property (nonatomic) CGFloat animationDelay;
+@property (nonatomic) CGFloat dimmingOpacity;
+@property (nonatomic) CGFloat actionPaneOpacity;
 
 #pragma mark - Lifecycle
 

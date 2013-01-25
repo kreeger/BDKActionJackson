@@ -3,14 +3,15 @@
 //  Created by Benjamin Kreeger on 1/25/13.
 //
 
-#import "BDKActionSheet.h"
+#import "BDKActionJackson.h"
 #import "BDKGradientView.h"
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface BDKActionSheet ()
+@interface BDKActionJackson ()
 
 @property (nonatomic) UIView *overlay;
+@property (strong, nonatomic) UILabel *label;
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 
 @property (nonatomic) CGFloat height;
@@ -34,7 +35,9 @@
 
 @end
 
-@implementation BDKActionSheet
+@implementation BDKActionJackson
+
+@synthesize title = _title, titleFont = _titleFont;
 
 #pragma mark - Lifecycle
 
@@ -44,6 +47,12 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        
+        _animationDelay = 0.0f;
+        _animationDuration = 0.3f;
+        _dimmingOpacity = 0.45;
+        _actionPaneOpacity = 0.85;
+        _visible = NO;
 
         [self addSubview:self.overlay];
         [self.overlay addSubview:self.shine];
@@ -54,10 +63,6 @@
         // Set some defaults
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
         [self addGestureRecognizer:self.tapRecognizer];
-
-        _animationDelay = 0.0f;
-        _animationDuration = 0.3f;
-        _visible = NO;
     }
     return self;
 }
@@ -79,17 +84,28 @@
     return _cancelButton;
 }
 
-- (UILabel *)label {
-    if (_label) return _label;
-    _label = [[UILabel alloc] initWithFrame:CGRectZero];
-    _label.text = @"Actions";
-    _label.font = [UIFont systemFontOfSize:14];
-    _label.shadowColor = [UIColor blackColor];
-    _label.textColor = [UIColor whiteColor];
-    _label.backgroundColor = [UIColor clearColor];
-    _label.shadowOffset = CGSizeMake(0, -1);
-    _label.textAlignment = NSTextAlignmentCenter;
-    return _label;
+- (NSString *)title {
+    if (_title) return _title;
+    _title = @"Actions";
+    return _title;
+}
+
+- (UIFont *)titleFont {
+    if (_titleFont) return _titleFont;
+    _titleFont = [UIFont systemFontOfSize:14];
+    return _titleFont;
+}
+
+- (void)setTitle:(NSString *)title {
+    self.label.text = title;
+    [self setNeedsLayout];
+    _title = title;
+}
+
+- (void)setTitleFont:(UIFont *)titleFont {
+    self.label.font = titleFont;
+    [self setNeedsLayout];
+    _titleFont = titleFont;
 }
 
 #pragma mark - Private properties
@@ -98,9 +114,22 @@
     if (_overlay) return _overlay;
     CGRect frame = CGRectMake(CGRectGetMinX(self.frame), CGRectGetMaxY(self.frame), CGRectGetWidth(self.frame), 100);
     _overlay = [[UIView alloc] initWithFrame:frame];
-    _overlay.alpha = 0.8;
+    _overlay.alpha = self.actionPaneOpacity;
     _overlay.backgroundColor = [UIColor blackColor];
     return _overlay;
+}
+
+- (UILabel *)label {
+    if (_label) return _label;
+    _label = [[UILabel alloc] initWithFrame:CGRectZero];
+    _label.text = self.title;
+    _label.font = self.titleFont;
+    _label.shadowColor = [UIColor blackColor];
+    _label.textColor = [UIColor whiteColor];
+    _label.backgroundColor = [UIColor clearColor];
+    _label.shadowOffset = CGSizeMake(0, -1);
+    _label.textAlignment = NSTextAlignmentCenter;
+    return _label;
 }
 
 - (UITapGestureRecognizer *)tapRecognizer {
@@ -113,7 +142,7 @@
 - (UIView *)shine {
     if (_shine) return _shine;
     CGRect frame = self.overlay.frame;
-    frame.size.height = floorf(CGRectGetHeight(frame) / 4);
+    frame.size.height = floorf(CGRectGetHeight(frame) / 3);
     _shine = [[BDKGradientView alloc] initWithFrame:frame
                                          startColor:[[UIColor whiteColor] colorWithAlphaComponent:0.2]
                                            endColor:[[UIColor whiteColor] colorWithAlphaComponent:0]
@@ -135,12 +164,13 @@
 }
 
 - (void)presentView:(void (^)(void))completion {
+    if (!self.superview) NSLog(@"BDKActionSheet was presented without being in the view hierachy.");
     [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
                         options:UIViewAnimationCurveEaseOut animations:^{
                             CGRect frame = self.overlay.frame;
                             frame.origin.y = CGRectGetHeight(self.frame) - CGRectGetHeight(frame);
                             self.overlay.frame = frame;
-                            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.25];
+                            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.dimmingOpacity];
                         } completion:^(BOOL finished) {
                             if (finished) {
                                 _visible = YES;
