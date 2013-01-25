@@ -13,6 +13,7 @@
 @property (nonatomic) UIView *overlay;
 @property (strong, nonatomic) UILabel *label;
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic) UIDeviceOrientation currentOrientation;
 
 @property (nonatomic) CGFloat height;
 @property (strong, nonatomic) UIView *shine;
@@ -36,6 +37,11 @@
  *  @param sender the sender of the event.
  */
 - (void)backgroundTapped:(UIGestureRecognizer *)sender;
+
+/** Called when the view is visible and any orientation methods are fired.
+ *  @param notification the notification object passed to the message from Notification Center.
+ */
+- (void)deviceOrientationDidChange:(NSNotification *)notification;
 
 @end
 
@@ -181,6 +187,17 @@
     return _visible;
 }
 
+- (void)setVisible:(BOOL)visible {
+    _visible = visible;
+    if (visible) {
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(deviceOrientationDidChange:)
+                                                     name:UIDeviceOrientationDidChangeNotification
+                                                   object:nil];
+    }
+}
+
 #pragma mark - Methods
 
 - (void)addButton:(UIButton *)button {
@@ -274,6 +291,27 @@
     } else {
         return YES;
     }
+}
+
+#pragma mark - UIDeviceOrientationDidChangeNotification
+
+- (void)deviceOrientationDidChange:(NSNotification *)notification {
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    
+    if (orientation == UIDeviceOrientationFaceDown || orientation == UIDeviceOrientationFaceDown ||
+        orientation == UIDeviceOrientationUnknown || self.currentOrientation == orientation) {
+        return;
+    }
+    if ((UIDeviceOrientationIsPortrait(self.currentOrientation) && UIDeviceOrientationIsPortrait(orientation)) || 
+        (UIDeviceOrientationIsLandscape(self.currentOrientation) && UIDeviceOrientationIsLandscape(orientation))) {
+        //still saving the current orientation
+        self.currentOrientation = orientation;
+        return;
+    }
+    
+    // [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(relayoutLayers) object:nil];
+    self.currentOrientation = orientation;
+    [self performSelector:@selector(layoutIfNeeded) withObject:nil afterDelay:0];
 }
 
 @end
