@@ -1,17 +1,17 @@
 //
 //  BDKViewController.m
-//  BDKActionSheet
-//
 //  Created by Benjamin Kreeger on 1/25/13.
-//  Copyright (c) 2013 Ben Kreeger. All rights reserved.
 //
 
 #import "BDKViewController.h"
+
+#import "BDKActionSheet.h"
 
 @interface BDKViewController ()
 
 @property (strong, nonatomic) UIBarButtonItem *shareButton;
 @property (strong, nonatomic) UILabel *label;
+@property (strong, nonatomic) BDKActionSheet *sheet;
 
 /** Fired when the share button gets tapped.
  *  @param sender the sender of the event.
@@ -31,8 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.view addSubview:self.label];
 }
+
+#pragma mark - Properties
 
 - (UIBarButtonItem *)shareButton {
     if (_shareButton) return _shareButton;
@@ -51,18 +53,26 @@
     _label.font = [UIFont boldSystemFontOfSize:36];
     _label.numberOfLines = 0;
     _label.lineBreakMode = NSLineBreakByWordWrapping;
-    [_label sizeToFit];
-    CGRect frame = CGRectIntegral(_label.frame);
-    frame.origin.x = (CGRectGetWidth(self.view.frame) - CGRectGetWidth(frame)) / 2;
-    frame.origin.y = (CGRectGetHeight(self.view.frame) - CGRectGetHeight(frame)) / 2;
-    _label.frame = frame;
+    _label.frame = self.view.frame;
     return _label;
 }
 
 #pragma mark - Actions
 
 - (void)shareButtonTapped:(UIBarButtonItem *)sender {
-    NSLog(@"Share button %@ tapped.", sender);
+    if (!_sheet) {
+        CGRect frame = self.view.window.frame;
+        self.sheet = [BDKActionSheet actionSheetInMasterFrame:frame];
+//        self.sheet.dismissalBlock = ^(BOOL wasCanceled) {
+//        };
+    }
+    
+    if (self.sheet.isVisible) {
+        [self.sheet dismissView];
+    } else {
+        [self.view.window addSubview:self.sheet];
+        [self.sheet presentView:nil];
+    }
 }
 
 @end

@@ -21,6 +21,9 @@
 		C363190216B2E22A006BC6F1 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318FE16B2E22A006BC6F1 /* Icon-72@2x.png */; };
 		C363190316B2E22A006BC6F1 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C36318FF16B2E22A006BC6F1 /* Icon.png */; };
 		C363190416B2E22A006BC6F1 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C363190016B2E22A006BC6F1 /* Icon@2x.png */; };
+		C363190816B2E317006BC6F1 /* BDKActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C363190716B2E317006BC6F1 /* BDKActionSheet.m */; };
+		C363191516B2EA08006BC6F1 /* BDKGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C363191416B2EA08006BC6F1 /* BDKGradientView.m */; };
+		C363191B16B2FC09006BC6F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C363191A16B2FC09006BC6F1 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,12 @@
 		C36318FE16B2E22A006BC6F1 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		C36318FF16B2E22A006BC6F1 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		C363190016B2E22A006BC6F1 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		C363190616B2E317006BC6F1 /* BDKActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKActionSheet.h; sourceTree = "<group>"; };
+		C363190716B2E317006BC6F1 /* BDKActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKActionSheet.m; sourceTree = "<group>"; };
+		C363190916B2E327006BC6F1 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
+		C363191316B2EA08006BC6F1 /* BDKGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKGradientView.h; sourceTree = "<group>"; };
+		C363191416B2EA08006BC6F1 /* BDKGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKGradientView.m; sourceTree = "<group>"; };
+		C363191A16B2FC09006BC6F1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C363191B16B2FC09006BC6F1 /* QuartzCore.framework in Frameworks */,
 				C3328F3216B2DAFF00451DAA /* UIKit.framework in Frameworks */,
 				C3328F3416B2DAFF00451DAA /* Foundation.framework in Frameworks */,
 				C3328F3616B2DAFF00451DAA /* CoreGraphics.framework in Frameworks */,
@@ -62,10 +72,12 @@
 		C3328F2216B2DAFF00451DAA = {
 			isa = PBXGroup;
 			children = (
-				C36318E116B2E1D2006BC6F1 /* Resources */,
+				C363190516B2E30C006BC6F1 /* BDKActionSheet */,
 				C36318D716B2E1BE006BC6F1 /* Classes */,
 				C3328F3016B2DAFF00451DAA /* Frameworks */,
 				C3328F2E16B2DAFF00451DAA /* Products */,
+				C36318E116B2E1D2006BC6F1 /* Resources */,
+				C363190916B2E327006BC6F1 /* readme.markdown */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +92,7 @@
 		C3328F3016B2DAFF00451DAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C363191A16B2FC09006BC6F1 /* QuartzCore.framework */,
 				C3328F3116B2DAFF00451DAA /* UIKit.framework */,
 				C3328F3316B2DAFF00451DAA /* Foundation.framework */,
 				C3328F3516B2DAFF00451DAA /* CoreGraphics.framework */,
@@ -115,6 +128,17 @@
 			);
 			name = Resources;
 			path = BDKActionSheet/Resources;
+			sourceTree = "<group>";
+		};
+		C363190516B2E30C006BC6F1 /* BDKActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				C363190616B2E317006BC6F1 /* BDKActionSheet.h */,
+				C363190716B2E317006BC6F1 /* BDKActionSheet.m */,
+				C363191316B2EA08006BC6F1 /* BDKGradientView.h */,
+				C363191416B2EA08006BC6F1 /* BDKGradientView.m */,
+			);
+			name = BDKActionSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +214,8 @@
 				C36318DE16B2E1CB006BC6F1 /* AppDelegate.m in Sources */,
 				C36318DF16B2E1CB006BC6F1 /* BDKViewController.m in Sources */,
 				C36318E016B2E1CB006BC6F1 /* main.m in Sources */,
+				C363190816B2E317006BC6F1 /* BDKActionSheet.m in Sources */,
+				C363191516B2EA08006BC6F1 /* BDKGradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +291,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BDKActionSheet/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/BDKActionSheet/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -276,6 +303,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BDKActionSheet/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/BDKActionSheet/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
